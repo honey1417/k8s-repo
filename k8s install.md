@@ -28,3 +28,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 # To prevent accidental upgrades of Kubernetes packages, hold them at their current version:
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
+# Initialising the control-plane node run the below command on the (master node)
+```bash
+sudo kubeadm init
+```
