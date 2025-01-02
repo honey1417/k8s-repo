@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata: 
+  name: my-rc
+spec:
+  #selector:
+    #env: test
+  replicas: 2
+  template: #rc template
+    #the below are pod spec
+    metadata: 
+      name: new-pod
+      labels: 
+        env: test
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+
+
+  

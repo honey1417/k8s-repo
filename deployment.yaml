@@ -1,0 +1,37 @@
+#greencont image
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: python-app
+spec: 
+  template:
+    metadata:
+      labels:
+        app: python
+    spec: 
+      containers:
+      - image: devopswithcloudhub/python_webpage:greencont
+        name: greencont
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python
+
+#bluecont image
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: python-app
+spec: 
+  template:
+    metadata:
+      labels:
+        app: python
+    spec: 
+      containers:
+      - image: devopswithcloudhub/python_webpage:bluecont
+        name: greencont
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: rol-deploy
+spec: 
+  template:
+    metadata:
+      labels:
+        type: rollUpdate
+    spec: 
+      containers:
+      - image: devopswithcloudhub/python_webpage:greencont
+        name: pythoncont
+  replicas: 5
+  selector:
+    matchLabels:
+      type: rollUpdate
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 50%
+      maxUnavailable: 25%

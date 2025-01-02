@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+  #type of object we are trying to create
+metadata: 
+  #metadata is the data about the object we are creating
+  name: Firstpod
+  labels:
+    
+  #kubectl run firstpod --image nginx
+spec: 
+  #specifications of the object 
+  #spec fiffers from one object to another 
+  containers: 
+    - name: c1
+      image: nginx
+    

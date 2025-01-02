@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: ReplicaSet  
+metadata: 
+  name: my-rs
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      env: test
+  template: 
+    metadata: 
+      name: new-pod
+      labels: 
+        env: test
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+
+
+##matchingExpression
+apiVersion: apps/v1
+kind: ReplicaSet  
+metadata: 
+  name: frontend
+spec:
+  replicas: 2
+  selector: 
+    matchExpressions:
+    -  { key: tier, operator: In, values: [frontend, rs]}
+    -  { key: dc, operator: NotIn, values: [mum, hyd]}   
+  template: 
+    metadata: 
+      name: new-pod
+      labels: #pod labels
+        tier: frontend
+        env: dev
+    spec: 
+      containers:
+      #below is mandatory as its a container name
+      - name: nginx-fe
+        image: nginx
+    
