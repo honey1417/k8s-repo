@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvvol-1
+spec: 
+  #disk size, access mode
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  #type of vol for underlying storage
+  #can be nfs, ebs, pvc etc
+  nfs:
+    server: #nfs-server ip
+    path: /opt/sfw
+     

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvc-deploy
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels: 
+        app: cart
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["sh", "-c", "while true; do echo honey >> /output/outputs.txt; sleep 5; done"]
+        volumeMounts: 
+        - name: my-volume
+          mountPath: /output
+      volumes:
+      - name: my-volume
+        persistentVolumeClaim:
+          claimName: boutiq-pvc

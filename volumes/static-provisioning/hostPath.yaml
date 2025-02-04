@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command: ["sh", "-c","echo Success!!! > /output/success.txt"]
+    volumeMounts: #mounting the volume to the container
+    - name: my-volume
+      mountPath: /output
+  volumes:
+  - name: my-volume
+    #type of volume
+    hostPath: #the path location on the nodes, where my pod will create
+      path: /var/data
