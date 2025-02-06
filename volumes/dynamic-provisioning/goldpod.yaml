@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pod-gold
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command: ["sh", "-c", "while true; do echo honey >> /output/outputs.txt; sleep 5; done"]
+    volumeMounts:
+    - name: my-cloud-gold
+      mountPath: /output
+  volumes:
+  - name: my-cloud-gold
+    persistentVolumeClaim:
+      claimName: pvc-claim-gold

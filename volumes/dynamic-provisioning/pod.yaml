@@ -1,0 +1,17 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pod-default
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command: ["sh", "-c", "while true; do echo honey >> /output/outputs.txt; sleep 5; done"]
+    volumeMounts:
+    - name: my-cloud
+      mountPath: /output
+  volumes:
+  - name: my-cloud
+    persistentVolumeClaim:
+      claimName: pvc-claim

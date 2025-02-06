@@ -1,0 +1,16 @@
+#default standard storage class is used
+#standard(rwo) is used
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-claim
+spec:
+  accessModes:
+  - ReadwriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+
+#apply the above yaml files and use kubectl get pv,pvc,sc
+#to see the difference when mentioning the storage class
+#firstConsumer waits for the first consumer to use the storage class

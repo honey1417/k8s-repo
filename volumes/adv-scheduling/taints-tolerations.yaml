@@ -1,0 +1,33 @@
+#taints and tolerations
+#taints are used to repel pods from nodes
+#tolerations are used to attract pods to nodes
+apiVersion: v1
+kind: Pod
+metadata:
+  name: blue-pod
+spec:
+  nodeSelector:
+    color: blue
+  containers:
+  - name: nginx
+    image: nginx 
+  tolerations:
+  - key: "color"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: green-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx 
+  tolerations:
+  - key: "color"
+    operator: "Equal"
+    value: "green"
+    effect: "NoSchedule"
