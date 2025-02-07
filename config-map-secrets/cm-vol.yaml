@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-vol-pod
+spec: 
+  restartPolicy: Never
+  containers:
+  - image: busybox
+    name: busybox
+    command: 
+    - 'sh' 
+    - '-c'
+    - 'echo Welcome $(cat /config/name) u joined $(cat /config/course) && sleep 3600'  
+    volumeMounts:
+    - name: my-vol-cm
+      mountPath: /config
+  volumes:
+  - name: my-vol-cm
+    configMap:
+      name: my-config

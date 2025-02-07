@@ -1,0 +1,80 @@
+#resources and Qos classes
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: regular-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - 'sh'
+    - '-c'
+    - 'echo Helloworld!'
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "250m"
+    limits: 
+      memory: "100Mi"
+      cpu: "400m"
+     
+---
+#besteffort-QoS
+apiVersion: v1
+kind: Pod
+metadata:
+  name: besteffort-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - 'sh'
+    - '-c'
+    - 'echo BestEffort!'
+  resources: {}
+
+---
+#burstable-QoS
+apiVersion: v1
+kind: Pod
+metadata:
+  name: burstable-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - 'sh'
+    - '-c'
+    - 'echo Burstable!'
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "250m"
+    limits:
+      memory: "200Mi"
+      cpu: "500m"
+
+---
+#guaranteed-QoS
+apiVersion: v1
+kind: Pod
+metadata:
+  name: guaranteed-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - 'sh'
+    - '-c'
+    - 'echo Guaranteed!'
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "400m"
+    limits:
+      memory: "100Mi"
+      cpu: "400m"

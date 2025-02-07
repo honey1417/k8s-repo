@@ -1,0 +1,36 @@
+#2 ways to check liveness
+#1. httpGet -- endpoint inside the container
+#2. exec -- command inside the container
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-pod
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - 'sh'
+    - '-c'
+    - 'echo liveness probe  && sleep 3600'
+    livenessProbe:
+      initialDelaySeconds: 5
+      exec:
+        command: ["echo", "helloworld!"]
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-pod-nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    livenessProbe:
+      initialDelaySeconds: 5
+      httpGet:
+        path: /
+        port: 80  
+

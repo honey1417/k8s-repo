@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  name: honey
+  course: k8s
+  env: test
+  key1: |
+    hello
+    welcome to config maps
+    multiline config

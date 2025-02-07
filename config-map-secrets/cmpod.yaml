@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: env-pod
+spec: 
+  containers:
+  - image: busybox
+    name: busybox
+    command: ['sh', '-c', 'echo Config Map is: $CONFIGMAPVAR && sleep 3600']
+    env:
+    - name: CONFIGMAPVAR
+      valueFrom:
+        configMapKeyRef:
+          name: my-config
+          key: name
+
+
+---
+#complete config map is passed as env variable
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: configmap-env-pod
+spec: 
+  containers:
+  - image: busybox
+    name: busybox
+    command: ['sleep', '3600']
+    envFrom:
+    - configMapRef:
+        name: my-config
