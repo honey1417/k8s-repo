@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: first-ingress
+  # annotations: (deprecated)
+  #  kubernetes.io/ingress.class: "gce" #gce-internal
+spec:
+  ingressClassName: "gce" #use gce-internal if needed
+  defaultBackend:
+    service:
+      name: blue-service
+      port:
+        number: 80
