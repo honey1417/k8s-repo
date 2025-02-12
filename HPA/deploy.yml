@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name : my-scaling-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-scaling-app
+  template:
+    metadata:
+      labels:
+        app: my-scaling-app
+    spec:
+      containers:
+      - name: my-scaling-deploy-pod
+        image: gcr.io/k8s-staging-e2e-test-images/resource-consumer:1.9
+        resources:
+          requests:
+            cpu: 100m #1/10 of a core
+       
